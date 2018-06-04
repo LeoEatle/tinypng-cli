@@ -1,6 +1,6 @@
 {
   "name": "@tencent/tinypng-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "tinypng-cli",
   "main": "index.js",
   "bin": {
