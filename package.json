@@ -1,0 +1,22 @@
+{
+  "name": "@tencent/tinypng-cli",
+  "version": "1.0.0",
+  "description": "tinypng-cli",
+  "main": "index.js",
+  "bin": {
+    "tinypng": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.2",
+    "tinify": "^1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leoytliu",
+  "license": "ISC"
+}
