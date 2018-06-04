@@ -1,7 +1,7 @@
 const path = require('path')
 const tinify = require('tinify')
 const shell = require('shelljs')
-const program = require('commander')
+// const program = require('commander')
 const chalk = require('chalk')
 const argv = require('minimist')(process.argv.slice(2))
 // username: Yitao Liu
@@ -26,10 +26,4 @@ function optimizeImgs() {
 
 if (argv.key) tinify.key = program.key
 
-// console.dir(argv)
-
-if (argv._.length > 2) {
-    chalk.red('参数数量超过限制')
-    shell.exit()
-}
 optimizeImgs()
