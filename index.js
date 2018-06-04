@@ -21,8 +21,11 @@ function optimizeImgs() {
     let promiseList = []
     let progress = 0
     // const fileList = shell.find('.').filter(function(file) { return file.match(/\.png|jpg$/); });
-    const fileList = glob.sync('*.jpg', '*.png')
-    let progressTotal = fileList.length
+    const fileList = glob.sync(['*.jpg', '*.png'])
+    const progressTotal = fileList.length
+    if (progressTotal === 0) {
+        console.log(chalk.red('没有找到图片文件！'))
+    }
     fileList.forEach((file, index) => {
         const source = tinify.fromFile(file).toFile(path.join('optimized', file))
         promiseList.push(source)
