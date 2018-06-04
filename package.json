@@ -1,6 +1,6 @@
 {
   "name": "@tencent/tinypng-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "tinypng-cli",
   "main": "index.js",
   "bin": {
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.15.1",
+    "glob-all": "^3.1.0",
     "minimist": "^1.2.0",
     "shelljs": "^0.8.2",
     "tinify": "^1.5.0"
