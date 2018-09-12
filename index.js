@@ -8,8 +8,6 @@ const chalk = require('chalk')
 const argv = require('minimist')(process.argv.slice(2))
 const config = require('./config.json')
 
-// username: Yitao Liu
-// email: liuyitao811@hotmail.com
 tinify.key = config.key
 tinify.proxy = config.proxy
 
