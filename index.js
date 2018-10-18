@@ -11,7 +11,10 @@ const config = require('./config.json')
 tinify.key = config.key
 tinify.proxy = config.proxy
 
+const DEFAULT_TIME = 5000
+
 function optimizeImgs() {
+    let isFinished = false
     // 判断输出目录是否存在，不存在则创建
     if (!shell.test('-d', './optimized')) {
         shell.mkdir('./optimized')
@@ -24,16 +27,26 @@ function optimizeImgs() {
     if (progressTotal === 0) {
         console.log(chalk.red('没有找到图片文件！'))
     }
+
+    // 开始进行压缩
+    setTimeout(() => {
+        if (!isFinished) {
+            console.log(chalk.red("连接HTTP超过5秒了！请检查网络连接或者代理配置是否正确。"))
+        }
+    }, DEFAULT_TIME);
+
     fileList.forEach((file, index) => {
         const source = tinify.fromFile(file).toFile(path.join('optimized', file))
         promiseList.push(source)
         source.then((res) => {
+            isFinished = true
             progress += 1
             console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
         })
     })
     Promise.all(promiseList).then((res) => {
         console.log(chalk.green('全部压缩成功！:)'))
+        isFinished = true
         shell.exit()
     }).catch((err) => {
         console.log(chalk.red('Ops，压缩失败了'))
