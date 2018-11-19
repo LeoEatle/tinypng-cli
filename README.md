@@ -12,7 +12,9 @@ cd 你的图片目录
 tinypng
 ```
 
-![](./imgs/progress.png)
+## 使用效果
+
+![](https://tuchuang-1251767583.cos.ap-guangzhou.myqcloud.com/Jietu20181119-215155@2x.jpg	)
 
 
 ## 参数说明
