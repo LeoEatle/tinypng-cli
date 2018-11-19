@@ -7,9 +7,8 @@ const glob = require('glob-all')
 const chalk = require('chalk')
 const argv = require('minimist')(process.argv.slice(2))
 const config = require('./config.json')
-
 tinify.key = config.key
-if (argv.key) tinify.key = program.key
+if (argv.key) tinify.key = argv.key
 if (config.proxy) {
     tinify.proxy = config.proxy
 }
@@ -19,8 +18,8 @@ let progress = 0
 let progressTotal
 function optimizeImgs() {
     // 判断输出目录是否存在，不存在则创建
-    if (!shell.test('-d', './optimized')) {
-        shell.mkdir('./optimized')
+    if (argv.dir && !shell.test('-d', argv.dir)) {
+        shell.mkdir(argv.dir)
     }
     const fileList = glob.sync(['*.jpg', '*.png'])
     progressTotal = fileList.length
@@ -31,12 +30,14 @@ function optimizeImgs() {
 }
 
 async function chainOptimized(fileList) {
-  for(let i = 0; i < fileList.length; i++) {
-    await tinify.fromFile(fileList[i]).toFile(path.join('optimized', fileList[i]))
-    progress += 1
-    console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
-  }
-  console.log(chalk.green('全部压缩完成✅'))
+    let prefix = argv.dir || ''
+    for(let i = 0; i < fileList.length; i++) {
+        await tinify.fromFile(fileList[i]).toFile(path.join(prefix, fileList[i]))
+        progress += 1
+        console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
+    }
+    console.log(chalk.green('全部压缩完成✅'))
+    shell.exit()
 }
 
 

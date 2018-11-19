@@ -8,19 +8,34 @@
 
 ```
 tnpm install -g @tencent/tinypng-cli
-cd 你的目录
+cd 你的图片目录
 tinypng
 ```
-默认用的是我的key，可以使用`-k <key>`来用自己的key。
 
 ![](./imgs/progress.png)
 
-`tinypng-cli`会在本地寻找所有`png/jpg`文件，压缩后自动生成`optimized`目录并存放其中
 
-![](./imgs/result.png)
+## 参数说明
 
-## 配置
+### --dir
+指定生成图片所要存放的目录，默认则是替换当前目录下的图片
 
-可以在`config.json`里修改key和proxy配置
+`tinypng --dir <dir-name>`
 
-**可以针对公司网络做代理，这是为什么我要做个这玩意的主要原因**
+### -key
+指定所要使用的tinypng的key，[点此申请](https://tinypng.com/developers)，默认使用的是我自己的key
+
+`tinypng --key <key>`
+
+### -proxy
+指定所要使用的代理，公司内部网需要用到的请使用此参数，默认已经用了腾讯代理。
+
+`tinypng --proxy <hostname>`
+
+## 兼容性
+
+本项目使用了`async/await`，因此只支持Node 8以上的版本。不打算兼容，欢迎PR！
+
+## 测试用例
+
+测试用例待补充。
