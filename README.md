@@ -6,7 +6,7 @@
 
 使用方式简单得 **令人发指！！**
 
-1. 在存放图片的目录下运行`tinypng -k [官方申请的key]` 可以不填key，默认用的是我的key
+1. 在存放图片的目录下运行`tinypng` 默认用的是我的key，可以使用`-k <key>`来用自己的key。
 
 ![](./imgs/progress.png)
 
