@@ -9,50 +9,47 @@ const argv = require('minimist')(process.argv.slice(2))
 const config = require('./config.json')
 
 tinify.key = config.key
-tinify.proxy = config.proxy
+if (argv.key) tinify.key = program.key
+if (config.proxy) {
+    tinify.proxy = config.proxy
+}
 
 const DEFAULT_TIME = 5000
-
+let progress = 0
+let progressTotal
 function optimizeImgs() {
-    let isFinished = false
     // 判断输出目录是否存在，不存在则创建
     if (!shell.test('-d', './optimized')) {
         shell.mkdir('./optimized')
     }
-    let promiseList = []
-    let progress = 0
-    // const fileList = shell.find('.').filter(function(file) { return file.match(/\.png|jpg$/); });
     const fileList = glob.sync(['*.jpg', '*.png'])
-    const progressTotal = fileList.length
+    progressTotal = fileList.length
     if (progressTotal === 0) {
         console.log(chalk.red('没有找到图片文件！'))
     }
-
-    // 开始进行压缩
-    setTimeout(() => {
-        if (!isFinished) {
-            console.log(chalk.red("连接HTTP超过5秒了！请检查网络连接或者代理配置是否正确。"))
-        }
-    }, DEFAULT_TIME);
-
-    fileList.forEach((file, index) => {
-        const source = tinify.fromFile(file).toFile(path.join('optimized', file))
-        promiseList.push(source)
-        source.then((res) => {
-            isFinished = true
-            progress += 1
-            console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
-        })
-    })
-    Promise.all(promiseList).then((res) => {
-        console.log(chalk.green('全部压缩成功！:)'))
-        isFinished = true
-        shell.exit()
-    }).catch((err) => {
-        console.log(chalk.red('Ops，压缩失败了'))
-    })
+    return fileList
 }
 
-if (argv.key) tinify.key = program.key
+async function chainOptimized(fileList) {
+  for(let i = 0; i < fileList.length; i++) {
+    await tinify.fromFile(fileList[i]).toFile(path.join('optimized', fileList[i]))
+    progress += 1
+    console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
+  }
+}
 
-optimizeImgs()
+
+tinify.validate(function(err) {
+    if (err) throw err;
+    var compressionsThisMonth = tinify.compressionCount;
+    // 默认每个账户每个月500额度
+    console.log(chalk.green(`当月可用余额为${500 - compressionsThisMonth}`))
+    // Validation of API key failed.
+  })
+  
+const fileList = optimizeImgs()
+try {
+    chainOptimized(fileList)
+} catch (err) {
+    throw err
+}
