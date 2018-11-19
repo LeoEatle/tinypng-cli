@@ -36,6 +36,7 @@ async function chainOptimized(fileList) {
     progress += 1
     console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
   }
+  console.log(chalk.green('全部压缩完成✅'))
 }
 
 
