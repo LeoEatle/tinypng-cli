@@ -14,6 +14,10 @@
     "tinify": "^1.5.0"
   },
   "devDependencies": {},
+  "respository": {
+    "type": "git",
+    "url": "git+http://git.code.oa.com/leoytliu/tinypng-cli.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
