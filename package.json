@@ -14,7 +14,7 @@
     "tinify": "^1.5.0"
   },
   "devDependencies": {},
-  "respository": {
+  "repository": {
     "type": "git",
     "url": "http://git.code.oa.com/leoytliu/tinypng-cli.git"
   },
