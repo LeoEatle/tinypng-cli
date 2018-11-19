@@ -14,7 +14,7 @@ tinypng
 
 ## 使用效果
 
-![](https://tuchuang-1251767583.cos.ap-guangzhou.myqcloud.com/Jietu20181119-215155@2x.jpg	)
+<img src="https://tuchuang-1251767583.cos.ap-guangzhou.myqcloud.com/Jietu20181119-215155@2x.jpg" width="360" >
 
 
 ## 参数说明
