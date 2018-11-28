@@ -1,7 +1,7 @@
 {
-  "name": "tinypng-cli",
+  "name": "@tencent/tinypng-cli",
   "version": "1.1.5",
-  "description": "A convenient tool to compile imgs via tinypng api. tinypng-cli",
+  "description": "tinypng-cli",
   "main": "index.js",
   "bin": {
     "tinypng": "./index.js"

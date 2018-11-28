@@ -1,47 +1,40 @@
 # tinypng-cli
 
-基于[tinypng](https://tinypng.com/developers)官方提供的api做的压缩图片cli工具
+A convenient tool to compile imgs via tinypng api.
 
-## 用法
+[Chinese doc](./README-CH.md)
 
-使用方式简单得 **令人发指！！**
+## Usage
 
 ```
 tnpm install -g @tencent/tinypng-cli
-cd 你的图片目录
+cd <img-dir>
 tinypng
 ```
 
-## 使用效果
 
 <img src="https://tuchuang-1251767583.cos.ap-guangzhou.myqcloud.com/Jietu20181119-215155@2x.jpg" width="360" >
 
 
-## 参数说明
+## API
 
 ### --dir
-指定生成图片所要存放的目录，默认则是替换当前目录下的图片
+The output path. If no param, it will replace original images as default behavior. 
 
 `tinypng --dir <dir-name>`
 
 ### -key
-指定所要使用的tinypng的key，[点此申请](https://tinypng.com/developers)，默认使用的是我自己的key
+The key to use tinypng api. The default key is my key. (NOT RECOMMAND)
 
 `tinypng --key <key>`
 
 ### -proxy
-指定所要使用的代理，公司内部网需要用到的请使用此参数，默认已经用了腾讯代理。
+Proxy. May be useful in company network.
 
 `tinypng --proxy <hostname>`
 
-#### 如果发现网络请求超时
+## Compatibility
 
-如果超时，请登陆http://auth-proxy.oa.com/DevNetTempVisit.aspx 点一下访问外网
-
-## 兼容性
-
-本项目使用了`async/await`，因此只支持Node 8以上的版本。欢迎PR！
-
-## 测试用例
-
-测试用例待补充。
+Use `async/await` to implement chaining network request. 
+No babel used. So it only support Node 8+. 
+PR welcomed!
