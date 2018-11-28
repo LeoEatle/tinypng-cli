@@ -2,7 +2,6 @@
 const path = require('path')
 const tinify = require('tinify')
 const shell = require('shelljs')
-// const program = require('commander')
 const glob = require('glob-all')
 const chalk = require('chalk')
 const argv = require('minimist')(process.argv.slice(2))
@@ -19,14 +18,13 @@ const DEFAULT_TIME = 5000
 let progress = 0
 let progressTotal
 function optimizeImgs() {
-    // 判断输出目录是否存在，不存在则创建
     if (argv.dir && !shell.test('-d', argv.dir)) {
         shell.mkdir(argv.dir)
     }
     const fileList = glob.sync(['*.jpg', '*.png'])
     progressTotal = fileList.length
     if (progressTotal === 0) {
-        console.log(chalk.red('没有找到图片文件！'))
+        console.log(chalk.red('No image file found! Please confirm jpg/png file in your directory.'))
     }
     return fileList
 }
@@ -36,9 +34,9 @@ async function chainOptimized(fileList) {
     for(let i = 0; i < fileList.length; i++) {
         await tinify.fromFile(fileList[i]).toFile(path.join(prefix, fileList[i]))
         progress += 1
-        console.log(chalk.magenta(`压缩进度: ${progress}/${progressTotal}`))
+        console.log(chalk.magenta(`progress: ${progress}/${progressTotal}`))
     }
-    console.log(chalk.green('全部压缩完成✅'))
+    console.log(chalk.green('All images are compressed! ✅'))
     shell.exit()
 }
 
@@ -46,8 +44,7 @@ async function chainOptimized(fileList) {
 tinify.validate(function(err) {
     if (err) throw err;
     var compressionsThisMonth = tinify.compressionCount;
-    // 默认每个账户每个月500额度
-    console.log(chalk.green(`当月可用余额为${500 - compressionsThisMonth}`))
+    console.log(chalk.green(`Your total usage this month: ${compressionsThisMonth}/500`))
     // Validation of API key failed.
   })
   
