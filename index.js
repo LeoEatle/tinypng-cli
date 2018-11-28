@@ -9,8 +9,10 @@ const argv = require('minimist')(process.argv.slice(2))
 const config = require('./config.json')
 tinify.key = config.key
 if (argv.key) tinify.key = argv.key
-if (config.proxy) {
-    tinify.proxy = config.proxy
+if (config.proxy || argv.proxy) {
+    const proxy = argv.proxy || config.proxy
+    tinify.proxy = proxy
+    console.log(chalk.green('proxy set done proxy:' + proxy))
 }
 
 const DEFAULT_TIME = 5000

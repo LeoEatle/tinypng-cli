@@ -34,9 +34,13 @@ tinypng
 
 `tinypng --proxy <hostname>`
 
+#### 如果发现网络请求超时
+
+如果超时，请登陆http://auth-proxy.oa.com/DevNetTempVisit.aspx 点一下访问外网
+
 ## 兼容性
 
-本项目使用了`async/await`，因此只支持Node 8以上的版本。不打算兼容，欢迎PR！
+本项目使用了`async/await`，因此只支持Node 8以上的版本。欢迎PR！
 
 ## 测试用例
 
