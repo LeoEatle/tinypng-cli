@@ -2,8 +2,6 @@
 
 A convenient tool to compile imgs via tinypng api.
 
-[Chinese doc](./README-CH.md)
-
 ## Usage
 
 ```
@@ -36,5 +34,7 @@ Proxy. May be useful in company network.
 ## Compatibility
 
 Use `async/await` to implement chaining network request. 
+
 No babel used. So it only support Node 8+. 
+
 PR welcomed!

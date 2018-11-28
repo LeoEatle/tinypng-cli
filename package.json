@@ -1,5 +1,5 @@
 {
-  "name": "tinypng-cli",
+  "name": "simple-tinypng-cli",
   "version": "1.1.5",
   "description": "A convenient tool to compile imgs via tinypng api. tinypng-cli",
   "main": "index.js",
@@ -16,7 +16,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "http://git.code.oa.com/leoytliu/tinypng-cli.git"
+    "url": "https://github.com/LeoEatle/tinypng-cli"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
