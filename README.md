@@ -9,10 +9,19 @@ tnpm install -g @tencent/tinypng-cli
 cd <img-dir>
 tinypng
 ```
-
+By default, it will compress all the image files in your current directory.
 
 <img src="https://tuchuang-1251767583.cos.ap-guangzhou.myqcloud.com/Jietu20181119-215155@2x.jpg" width="360" >
 
+❤️It works like charm.
+
+You can also pass the file path to it like this:
+
+`tinypng <img-path>`
+
+You can also pass multiple file paths to it like this:
+
+`tinypng <img1-path> <img2-path> ...`
 
 ## API
 
@@ -35,6 +44,6 @@ Proxy. May be useful in company network.
 
 Use `async/await` to implement chaining network request. 
 
-No babel used. So it only support Node 8+. 
+No babel used. So it is only supported in Node 8+. 
 
 PR welcomed!

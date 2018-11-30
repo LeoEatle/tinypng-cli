@@ -17,19 +17,27 @@ if (config.proxy || argv.proxy) {
 const DEFAULT_TIME = 5000
 let progress = 0
 let progressTotal
+// get file list
 function optimizeImgs() {
+    // if directly pass file path
+    if (argv._) {
+        return argv._
+    }
+    // if we need to create a new dir
     if (argv.dir && !shell.test('-d', argv.dir)) {
         shell.mkdir(argv.dir)
     }
+    // by default, look up the current dir
     const fileList = glob.sync(['*.jpg', '*.png'])
-    progressTotal = fileList.length
-    if (progressTotal === 0) {
-        console.log(chalk.red('No image file found! Please confirm jpg/png file in your directory.'))
-    }
     return fileList
 }
 
 async function chainOptimized(fileList) {
+    progressTotal = fileList.length
+    if (progressTotal === 0) {
+        console.log(chalk.red('No image file found! Please confirm jpg/png file in your directory.'))
+        shell.exit()
+    }
     let prefix = argv.dir || ''
     for(let i = 0; i < fileList.length; i++) {
         await tinify.fromFile(fileList[i]).toFile(path.join(prefix, fileList[i]))
